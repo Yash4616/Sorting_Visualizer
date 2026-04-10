@@ -24,34 +24,43 @@ The frontend renders these steps on an HTML canvas with a guarded state machine.
 ## Project Structure
 
 ```
-main.py
-requirements.txt
-README.md
-backend/
-  app.py
-  run_manager.py
-  api/
-    routes.py
-  sorting/
-    complexity.py
-    array_generator.py
-    algorithms/
-      base.py
-      bubble_sort.py
-      selection_sort.py
-      insertion_sort.py
-      merge_sort.py
-      quick_sort.py
-      heap_sort.py
-frontend/
-  package.json
-  vite.config.ts
-  tsconfig.json
-  src/
-    main.ts
-    types.ts
-    config.ts
-    styles.css
+Sorting_Algo/
+|-- main.py                         # Flask/Waitress entrypoint
+|-- requirements.txt                # Backend Python dependencies
+|-- README.md
+|-- img.png                         # README preview image
+|-- backend/
+|   |-- __init__.py
+|   |-- app.py                      # Flask app factory + static serving
+|   |-- run_manager.py              # Run lifecycle, locking, timeout, reaper
+|   |-- api/
+|   |   |-- __init__.py
+|   |   `-- routes.py               # REST API endpoints
+|   `-- sorting/
+|       |-- __init__.py
+|       |-- array_generator.py      # Deterministic input generation
+|       |-- complexity.py           # Big-O metadata map
+|       `-- algorithms/
+|           |-- __init__.py
+|           |-- base.py             # Shared SortStep/SortResult/contracts
+|           |-- bubble_sort.py
+|           |-- selection_sort.py
+|           |-- insertion_sort.py
+|           |-- merge_sort.py
+|           |-- quick_sort.py
+|           `-- heap_sort.py
+`-- frontend/
+    |-- index.html
+    |-- package.json
+    |-- package-lock.json
+    |-- tsconfig.json
+    |-- vite.config.ts
+    |-- dist/                       # Production bundle (generated)
+    `-- src/
+        |-- main.ts                 # State machine + polling + rendering
+        |-- types.ts                # Shared frontend interfaces/types
+        |-- config.ts               # Frontend constants/config
+        `-- styles.css              # UI styling
 ```
 
 ## Backend Architecture
